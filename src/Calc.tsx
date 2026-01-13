@@ -24,7 +24,6 @@ function Calc() {
   const [errmsg, setErrmsg] = useState("");
 
   function onCalc(e: React.KeyboardEvent<HTMLInputElement>) {
-    console.log(`onCalc : `, e);
     if (!myinput?.trim()) {
       return;
     }
