@@ -43,6 +43,10 @@ function Calc() {
       <div>
         <label>수식을 입력하세요:</label>
         <input
+          value={myinput}
+          onChange={(e) => {
+            setMyinput(e?.target?.value);
+          }}
           onKeyDown={(e) => {
             onCalc(e);
           }}
