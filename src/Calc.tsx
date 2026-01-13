@@ -55,6 +55,7 @@ function Calc() {
             onCalc(e);
           }}
         />
+        <span> = ${result}</span>
       </div>
     </div>
   );
