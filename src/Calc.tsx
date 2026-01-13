@@ -24,15 +24,17 @@ function Calc() {
   const [errmsg, setErrmsg] = useState("");
 
   function onCalc(e: React.KeyboardEvent<HTMLInputElement>) {
+    console.log(`onCalc : `, e);
     if (!myinput?.trim()) {
       return;
     }
-    if (e?.code?.toLowerCase() != "enter") {
+    if (!e?.code?.toLowerCase().includes("enter")) {
       return;
     }
     try {
       let _result = evaluate(myinput);
       setMyresult(_result);
+      console.log(`result : `, result);
     } catch (error: any) {
       alert(`! err: ${error?.message}`);
       setErrmsg(error?.message);
