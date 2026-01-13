@@ -31,6 +31,8 @@ function Calc() {
       return;
     }
     try {
+      let _result = evaluate(myinput);
+      setMyresult(_result);
     } catch (error: any) {
       alert(`! err: ${error?.message}`);
       setErrmsg(error?.message);
