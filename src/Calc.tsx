@@ -1,7 +1,50 @@
+import {
+  atan2,
+  chain,
+  derivative,
+  e,
+  evaluate,
+  log,
+  pi,
+  pow,
+  round,
+  sqrt,
+  parse,
+  format,
+} from "mathjs";
+import { useState } from "react";
+
+/** 계산기 만들기  */
 function Calc() {
+  const [myinput, setMyinput] = useState("");
+  const [result, setMyresult] = useState("");
+  const [errmsg, setErrmsg] = useState("");
+
+  function onCalc(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (!myinput?.trim()) {
+      return;
+    }
+    if (e?.code?.toLowerCase() != "enter") {
+      return;
+    }
+    try {
+    } catch (error: any) {
+      alert(`! err: ${error?.message}`);
+      setErrmsg(error?.message);
+    }
+  }
+
   return (
     <div>
       <h1>Calc</h1>
+      <div>
+        <label>수식을 입력하세요:</label>
+        <input
+          onKeyDown={(e) => {
+            onCalc(e);
+          }}
+        />
+      </div>
     </div>
   );
 }
