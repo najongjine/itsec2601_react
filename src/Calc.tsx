@@ -1,3 +1,6 @@
+/**
+ * https://www.npmjs.com/package/mathjs
+ */
 import {
   atan2,
   chain,
