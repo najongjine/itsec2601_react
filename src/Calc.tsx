@@ -23,6 +23,7 @@ function Calc() {
       let _result = math.format(calculatedRaw);
       console.log(`result : `, _result);
       setMyresult(_result);
+      setErrmsg("");
     } catch (error: any) {
       alert(`! err: ${error?.message}`);
       setErrmsg(error?.message);
