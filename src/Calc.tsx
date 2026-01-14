@@ -1,20 +1,7 @@
 /**
  * https://www.npmjs.com/package/mathjs
  */
-import {
-  atan2,
-  chain,
-  derivative,
-  e,
-  evaluate,
-  log,
-  pi,
-  pow,
-  round,
-  sqrt,
-  parse,
-  format,
-} from "mathjs";
+import * as math from "mathjs";
 import { useState } from "react";
 
 /** 계산기 만들기  */
@@ -31,9 +18,11 @@ function Calc() {
       return;
     }
     try {
-      let _result = evaluate(myinput);
+      console.log(`myinput : `, myinput);
+      let calculatedRaw = math.evaluate(myinput, { i: math.i });
+      let _result = math.format(calculatedRaw);
+      console.log(`result : `, _result);
       setMyresult(_result);
-      console.log(`result : `, result);
     } catch (error: any) {
       alert(`! err: ${error?.message}`);
       setErrmsg(error?.message);
