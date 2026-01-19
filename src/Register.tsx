@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function Register() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
