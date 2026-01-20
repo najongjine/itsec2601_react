@@ -24,6 +24,7 @@ function Register() {
       });
 
       const data = await response.json();
+      console.log(data);
 
       if (data.success) {
         alert("Registration successful! \nUser ID: " + data.data.userInfo.id);
@@ -32,7 +33,7 @@ function Register() {
         setPassword("");
         navigate("/");
       } else {
-        alert("Registration failed: " + (data.message || "Unknown error"));
+        alert("Registration failed: " + (data.msg || "Unknown error"));
       }
     } catch (error) {
       console.error("Error registering:", error);
