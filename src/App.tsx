@@ -4,6 +4,7 @@ import Footer from "./Component/Footer";
 import Calc from "./Calc";
 import Board from "./Board";
 import Register from "./Register";
+import Login from "./Login";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Calc />} />
           <Route path="/board" element={<Board />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
       </BrowserRouter>
