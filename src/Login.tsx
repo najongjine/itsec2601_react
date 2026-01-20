@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./context/AuthContext";
 
 function Login() {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,11 +32,16 @@ function Login() {
         body: formData,
       });
 
-      const data = await response.json();
+      let data = await response.json();
       console.log(data);
 
       if (data.success) {
-        alert("login successful! \nUser ID: " + data.data.userInfo.id);
+        data = data?.data;
+        // alert("login successful! \nUser ID: " + data.userInfo.id);
+
+        // Store in context
+        login(data.userInfo, data.token);
+
         // Optional: Redirect or clear form here
         setUsername("");
         setPassword("");

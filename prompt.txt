@@ -1,0 +1,28 @@
+--- 로그인 정보저장 context api prompt ---
+
+"userInfo": {
+            "id": 4,
+            "username": "test1",
+            "password": "",
+            "profile_img": null,
+            "created_dt": "2026-01-19T05:18:46.423Z",
+            "updated_dt": "2026-01-19T05:18:46.423Z"
+        },
+        "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJ0ZXN0MSIsInBhc3N3b3JkIjoiIiwicHJvZmlsZV9pbWciOm51bGwsImNyZWF0ZWRfZHQiOiIyMDI2LTAxLTE5VDA1OjE4OjQ2LjQyM1oiLCJ1cGRhdGVkX2R0IjoiMjAyNi0wMS0xOVQwNToxODo0Ni40MjNaIiwiaWF0IjoxNzY4ODg1Nzk0LCJleHAiOjE4NTUxOTkzOTR9.BLCjM_sG7bfX-B1OA6kg4TZ7e4vGOpBS6qED8zODEvg"
+    }
+
+이게 서버에서 준 정보야.
+data = data?.data;
+이거 하고나면 정보가 저렇게 되.
+
+이걸 store 에 저장하고 싶어.
+userInfo, token key 이름 따로 해서 말이야.
+
+니가 context api 코드를 만들어줘.
+Login.tsx 는 
+
+navigate("/");
+
+하기전에 store 에 userInfo 랑 token을 저장 해야해.
+
+--- 로그인 정보저장 context api prompt END ---
