@@ -40,7 +40,7 @@ function Login() {
         // alert("login successful! \nUser ID: " + data.userInfo.id);
 
         // Store in context
-        login(data.userInfo, data.token);
+        login(data?.userInfo, data?.token);
 
         // Optional: Redirect or clear form here
         setUsername("");
