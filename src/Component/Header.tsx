@@ -7,6 +7,8 @@ function Header() {
       <li>
         <Link to="/">calc</Link>
         <Link to="/board">board</Link>
+        <Link to="/register">register</Link>
+        <Link to="/login">login</Link>
       </li>
     </div>
   );
