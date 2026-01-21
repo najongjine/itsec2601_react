@@ -35,7 +35,7 @@ function BoardUpsert() {
       let data = await response.json();
       console.log(data);
 
-      if (data.success) {
+      if (data?.success) {
         data = data?.data;
         // alert("login successful! \nUser ID: " + data.userInfo.id);
 
@@ -43,9 +43,9 @@ function BoardUpsert() {
       } else {
         alert("글쓰기 실패: " + (data.msg || "Unknown error"));
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error login:", error);
-      alert("글쓰기 실패: An error occurred during login.");
+      alert(`글쓰기 실패: ${error?.message}`);
     }
   };
 
