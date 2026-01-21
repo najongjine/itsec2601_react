@@ -29,6 +29,10 @@ function BoardUpsert() {
 
       const response = await fetch(`${API_BASE_URL}/api/board/upsert`, {
         method: "POST",
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
         body: formData,
       });
 
