@@ -30,7 +30,6 @@ function BoardUpsert() {
       const response = await fetch(`${API_BASE_URL}/api/board/upsert`, {
         method: "POST",
         headers: {
-          "Content-Type": "multipart/form-data",
           Authorization: `${token}`,
         },
         body: formData,
@@ -61,7 +60,7 @@ function BoardUpsert() {
 
   return (
     <div>
-      <h1>게시글 작성</h1>
+      <h1>게시글 작성 {token}</h1>
 
       <div>
         <label>제목:</label>
