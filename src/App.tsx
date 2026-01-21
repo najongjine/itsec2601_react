@@ -7,6 +7,7 @@ import Register from "./Register";
 import Login from "./Login";
 import { AuthProvider } from "./context/AuthContext";
 import BoardUpsert from "./BoardUpsert";
+import TipTapSample from "./TipTapSample";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/board_upsert" element={<BoardUpsert />} />
+            <Route path="/tiptap" element={<TipTapSample />} />
           </Routes>
           <Footer />
         </AuthProvider>
