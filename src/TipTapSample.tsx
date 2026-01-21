@@ -1,4 +1,4 @@
-import "./styles.scss";
+import "./TipTapSample.scss";
 
 import { TextStyleKit } from "@tiptap/extension-text-style";
 import type { Editor } from "@tiptap/react";
