@@ -6,6 +6,7 @@ import Board from "./Board";
 import Register from "./Register";
 import Login from "./Login";
 import { AuthProvider } from "./context/AuthContext";
+import BoardUpsert from "./BoardUpsert";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/board" element={<Board />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/board_upsert" element={<BoardUpsert />} />
           </Routes>
           <Footer />
         </AuthProvider>
