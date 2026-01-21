@@ -57,31 +57,29 @@ function BoardUpsert() {
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1>게시글 작성</h1>
 
       <div>
-        <label>username:</label>
+        <label>제목:</label>
         <input
-          value={username}
+          value={title}
           onKeyDown={handleKeyDown}
           onChange={(e) => {
-            setUsername(e.target.value);
+            setTitle(e?.target?.value);
           }}
         />
       </div>
       <div>
-        <label>password:</label>
-        <input
-          type="password"
-          value={password}
-          onKeyDown={handleKeyDown}
+        <label>내용:</label>
+        <textarea
+          value={content}
           onChange={(e) => {
-            setPassword(e.target.value);
+            setContent(e.target.value);
           }}
         />
       </div>
       <div>
-        <button onClick={handleRegister}>Login</button>
+        <button onClick={onUpdate}>글쓰기</button>
       </div>
     </div>
   );
