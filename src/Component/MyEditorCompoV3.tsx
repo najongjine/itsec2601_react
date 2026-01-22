@@ -13,7 +13,10 @@ import { useAuth } from "../context/AuthContext";
 
 const btn: React.CSSProperties = {
   padding: "6px 10px",
-  border: "1px solid #ddd",
+  // ✅ border를 쪼개서 정의합니다.
+  borderWidth: "1px",
+  borderStyle: "solid",
+  borderColor: "#ddd",
   borderRadius: 8,
   background: "#fff",
   cursor: "pointer",
@@ -25,11 +28,14 @@ const btnOn: React.CSSProperties = {
 };
 const selectStyle: React.CSSProperties = {
   padding: "6px 10px",
-  border: "1px solid #ddd",
+  // ✅ 여기도 마찬가지로 쪼갭니다.
+  borderWidth: "1px",
+  borderStyle: "solid",
+  borderColor: "#ddd",
   borderRadius: 8,
   background: "#fff",
   cursor: "pointer",
-  minWidth: "100px", // 정렬 Select Box를 위한 최소 너비 설정
+  minWidth: "100px",
 };
 const colorSelectStyle: React.CSSProperties = {
   ...selectStyle,
