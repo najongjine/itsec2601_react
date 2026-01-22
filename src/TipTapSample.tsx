@@ -53,15 +53,15 @@ function MenuBar({ editor }: { editor: Editor }) {
   );
 }
 
-export default () => {
+const TipTapSample = () => {
   const editor = useEditor({
     extensions,
     content: `
-<h2>
-  Hi there,
-</h2>
+            <h2>
+              Hi there,
+            </h2>
 
-`,
+            `,
   });
   return (
     <div>
@@ -70,3 +70,4 @@ export default () => {
     </div>
   );
 };
+export default TipTapSample;
