@@ -17,7 +17,7 @@
  */
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import MyEditorCompoV3 from "../component/MyEditorCompoV3";
+import MyEditorCompoV3 from "./Component/MyEditorCompoV3";
 
 const MyEditor: React.FC = () => {
   const mode = import.meta.env.MODE;
