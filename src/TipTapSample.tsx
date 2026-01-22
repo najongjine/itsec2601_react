@@ -16,8 +16,7 @@ function MenuBar({ editor }: { editor: Editor }) {
       return {
         isBold: ctx.editor.isActive("bold") ?? false,
         canBold: ctx.editor.can().chain().toggleBold().run() ?? false,
-        isItalic: ctx.editor.isActive("italic") ?? false,
-        canItalic: ctx.editor.can().chain().toggleItalic().run() ?? false,
+
         isStrike: ctx.editor.isActive("strike") ?? false,
         canStrike: ctx.editor.can().chain().toggleStrike().run() ?? false,
       };
@@ -34,13 +33,7 @@ function MenuBar({ editor }: { editor: Editor }) {
         >
           Bold
         </button>
-        <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          disabled={!editorState.canItalic}
-          className={editorState.isItalic ? "is-active" : ""}
-        >
-          Italic
-        </button>
+
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
           disabled={!editorState.canStrike}
