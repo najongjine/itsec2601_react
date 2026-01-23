@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "./context/AuthContext";
 
 function Board() {
   const { userInfo, token } = useAuth();
   const [myinput, setMyinput] = useState("");
   const [boardList, setBoardList] = useState<string[]>([]);
+
+  async function load() {
+    await getBoardList();
+  }
+  async function getBoardList() {
+    /** /api/board_v2/get_memo
+     * method: GET
+     * 여기서 fetch로 요청해서 데이터 가져오기
+     */
+  }
+  useEffect(() => {
+    load();
+  }, []);
+
   return (
     <div>
       <h1>Board</h1>
@@ -20,14 +34,6 @@ function Board() {
             <p>
               <strong>Username:</strong> {userInfo.username}
             </p>
-            <p>
-              <strong>Token:</strong>{" "}
-              {token ? `${token.substring(0, 20)}...` : "None"}
-            </p>
-            <details>
-              <summary>Full Token</summary>
-              <p style={{ wordBreak: "break-all" }}>{token}</p>
-            </details>
           </div>
         ) : (
           <p>Not logged in</p>
@@ -42,7 +48,7 @@ function Board() {
         ))}
       </div>
       <div>
-        <label>글 입력:</label>
+        <label>검색:</label>
         <input
           value={myinput}
           onKeyDown={(e) => {
@@ -57,6 +63,7 @@ function Board() {
           }}
         />
       </div>
+      <div>{/**  */}</div>
     </div>
   );
 }
