@@ -575,12 +575,12 @@ export default function MyEditorCompoV3() {
         method: "POST",
         headers: {
           Authorization: `${token}`,
-          "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
       });
 
       res = await res.json();
+      console.log("--- res: ", res);
       if (!res?.success) {
         alert(`저장 실패. ${res?.message ?? ""}`);
         return;
