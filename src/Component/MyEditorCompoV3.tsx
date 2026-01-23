@@ -454,7 +454,7 @@ export default function MyEditorCompoV3() {
       setMemo(result?.data);
       setTitle(result?.data?.title ?? "");
     } catch (error: any) {
-      console.log(`서버 에러! ${error?.message ?? ""}`);
+      console.log(`서버 에러! ${error?.msg ?? ""}`);
     }
   }
 
@@ -557,6 +557,11 @@ export default function MyEditorCompoV3() {
 
   const handleSave = async () => {
     if (!editor) return;
+    /** 제목, 내용 입력했는지 검사하기 */
+    if (!(title?.trim() || "") || !(editor?.getHTML()?.trim() || "")) {
+      alert("제목과 내용을 입력해주세요.");
+      return;
+    }
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const ENDPOINT_URL = import.meta.env.VITE_SERVER_API_TIPTAP_ENDPOINT;
     const reactListPage =
@@ -582,13 +587,13 @@ export default function MyEditorCompoV3() {
       res = await res.json();
       console.log("--- res: ", res);
       if (!res?.success) {
-        alert(`저장 실패. ${res?.message ?? ""}`);
+        alert(`저장 실패. ${res?.msg ?? ""}`);
         return;
       }
 
       navigate(reactListPage);
     } catch (error: any) {
-      alert(`문서 저장 중 오류 발생. ${error?.message ?? ""}`);
+      alert(`문서 저장 중 오류 발생. ${error?.msg ?? ""}`);
       // 사용자에게 오류를 알리는 로직 추가
     }
     console.log("----------------------------");
