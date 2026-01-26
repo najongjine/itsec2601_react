@@ -94,6 +94,13 @@ function Board() {
           </div>
         ))}
       </div>
+      <div>
+        <button
+          onClick={() => {
+            navigate(`/tiptap`);
+          }}
+        ></button>
+      </div>
     </div>
   );
 }
