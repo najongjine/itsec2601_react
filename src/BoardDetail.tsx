@@ -91,14 +91,26 @@ function BoardDetail() {
       />
 
       <div>
-        <button
-          title="삭제"
-          onClick={async () => {
-            onDelete();
-          }}
-        >
-          삭제
-        </button>
+        {userInfo?.id === board?.userId && (
+          <div>
+            <button
+              title="수정"
+              onClick={async () => {
+                navigate(`/board_detail?id=${boardId}`);
+              }}
+            >
+              삭제
+            </button>
+            <button
+              title="삭제"
+              onClick={async () => {
+                onDelete();
+              }}
+            >
+              삭제
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
