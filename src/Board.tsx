@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "./context/AuthContext";
+import { MemoStrtype } from "./types/global_types";
 
 function Board() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const { userInfo, token } = useAuth();
   const [myinput, setMyinput] = useState("");
   const [boardList, setBoardList] = useState<string[]>([]);
@@ -10,10 +12,23 @@ function Board() {
     await getBoardList();
   }
   async function getBoardList() {
-    /** /api/board_v2/get_memo
-     * method: GET
-     * 여기서 fetch로 요청해서 데이터 가져오기
-     */
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/board_v2/get_memo`, {
+        method: "GET", // GET은 생략 가능하지만 명시적으로 작성함
+      });
+
+      // HTTP 에러 상태 체크 (200-299 범위가 아니면 에러 처리)
+      if (!response.ok) {
+        alert(` fetch 에러. ${response?.statusText}`);
+        return;
+      }
+
+      // JSON 데이터 파싱 및 반환
+      const data: any = await response.json();
+      console.log(`data : `, data);
+    } catch (error: any) {
+      alert(`에러. 데이터를 가져오는 중 오류 발생. ${error?.message}`);
+    }
   }
   useEffect(() => {
     load();
