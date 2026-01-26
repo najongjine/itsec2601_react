@@ -96,7 +96,7 @@ function BoardDetail() {
             <button
               title="수정"
               onClick={async () => {
-                navigate(`/board_detail?id=${boardId}`);
+                navigate(`/tiptap?id=${boardId}`);
               }}
             >
               수정
