@@ -99,7 +99,7 @@ function BoardDetail() {
                 navigate(`/board_detail?id=${boardId}`);
               }}
             >
-              삭제
+              수정
             </button>
             <button
               title="삭제"
