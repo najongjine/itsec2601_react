@@ -43,6 +43,35 @@ function BoardDetail() {
       alert(`에러. 데이터를 가져오는 중 오류 발생. ${error?.message}`);
     }
   }
+  async function onDelete() {
+    try {
+      if (!confirm(`정말로 삭제 하시겠습니까?`)) {
+        return;
+      }
+      const payload = {
+        id: boardId,
+      };
+      let res: any = await fetch(`${API_BASE_URL}/api/board_v2/delete_by_id`, {
+        method: "POST",
+        headers: {
+          Authorization: `${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      res = await res.json();
+      console.log("--- res: ", res);
+      if (!res?.success) {
+        alert(`저장 실패. ${res?.msg ?? ""}`);
+        return;
+      }
+
+      navigate("/board");
+    } catch (error: any) {
+      alert(`문서 저장 중 오류 발생. ${error?.msg ?? ""}`);
+      // 사용자에게 오류를 알리는 로직 추가
+    }
+  }
   useEffect(() => {
     load();
   }, [boardId]);
@@ -65,36 +94,7 @@ function BoardDetail() {
         <button
           title="삭제"
           onClick={async () => {
-            try {
-              if (!confirm(`정말로 삭제 하시겠습니까?`)) {
-                return;
-              }
-              const payload = {
-                id: boardId,
-              };
-              let res: any = await fetch(
-                `${API_BASE_URL}/api/board_v2/delete_by_id`,
-                {
-                  method: "POST",
-                  headers: {
-                    Authorization: `${token}`,
-                  },
-                  body: JSON.stringify(payload),
-                },
-              );
-
-              res = await res.json();
-              console.log("--- res: ", res);
-              if (!res?.success) {
-                alert(`저장 실패. ${res?.msg ?? ""}`);
-                return;
-              }
-
-              navigate("/board");
-            } catch (error: any) {
-              alert(`문서 저장 중 오류 발생. ${error?.msg ?? ""}`);
-              // 사용자에게 오류를 알리는 로직 추가
-            }
+            onDelete();
           }}
         >
           삭제
