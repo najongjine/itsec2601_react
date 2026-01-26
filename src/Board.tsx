@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "./context/AuthContext";
 import { MemoStrtype } from "./types/global_types";
+import { useNavigate } from "react-router-dom";
 
 function Board() {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const navigate = useNavigate();
   const { userInfo, token } = useAuth();
   const [myinput, setMyinput] = useState("");
   const [boardList, setBoardList] = useState<MemoStrtype[]>([]);
@@ -38,6 +40,10 @@ function Board() {
   useEffect(() => {
     load();
   }, []);
+
+  function onItemClick(id: number | undefined) {
+    navigate(`/board_detail?id=${id || 0}`);
+  }
 
   return (
     <div>
@@ -76,7 +82,12 @@ function Board() {
       <div>
         {/* 인자는 ( )로 감싸고, 리턴 부분도 ( )로 감싸세요 */}
         {boardList?.map((item, index) => (
-          <div key={index}>
+          <div
+            key={index}
+            onClick={() => {
+              onItemClick(item?.id);
+            }}
+          >
             <div>{item?.title}</div>
             <div>{item?.username}</div>
             <div>{item?.createdDt}</div>

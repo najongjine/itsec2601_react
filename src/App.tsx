@@ -9,6 +9,7 @@ import { AuthProvider } from "./context/AuthContext";
 import BoardUpsert from "./BoardUpsert";
 import TipTapSample from "./TipTapSample";
 import MyEditor from "./MyEditor";
+import BoardDetail from "./BoardDetail";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/board_upsert" element={<BoardUpsert />} />
             <Route path="/tiptap" element={<MyEditor />} />
+            <Route path="/board_detail" element={<BoardDetail />} />
           </Routes>
           <Footer />
         </AuthProvider>
