@@ -11,6 +11,7 @@ export interface MemoStrtype {
   htmlContent?: string;
   jsonContent?: string;
   username?: string;
+  userId?: number;
 }
 export interface MemoImgstype {
   filesize?: number;
