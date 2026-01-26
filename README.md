@@ -2,6 +2,9 @@ npm create vite@latest itsec2601_react -- --template react-ts
 
 npm install react-router-dom
 
+npm install dompurify
+npm install -D @types/dompurify
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

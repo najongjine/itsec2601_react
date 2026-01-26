@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "./context/AuthContext";
 import { MemoStrtype } from "./types/global_types";
 import { useSearchParams } from "react-router-dom";
+import DOMPurify from "dompurify";
 
 function BoardDetail() {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -50,6 +51,12 @@ function BoardDetail() {
       <h1>Board 상세</h1>
 
       <div>{board?.title}</div>
+      <div
+        className="view-content"
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(board?.htmlContent || ""),
+        }}
+      />
     </div>
   );
 }
