@@ -10,6 +10,7 @@ export interface MemoStrtype {
   title?: string;
   htmlContent?: string;
   jsonContent?: string;
+  username?: string;
 }
 export interface MemoImgstype {
   filesize?: number;

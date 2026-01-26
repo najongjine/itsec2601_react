@@ -78,6 +78,8 @@ function Board() {
         {boardList?.map((item, index) => (
           <div key={index}>
             <div>{item?.title}</div>
+            <div>{item?.username}</div>
+            <div>{item?.createdDt}</div>
           </div>
         ))}
       </div>
