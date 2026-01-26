@@ -6,7 +6,7 @@ function Board() {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const { userInfo, token } = useAuth();
   const [myinput, setMyinput] = useState("");
-  const [boardList, setBoardList] = useState<string[]>([]);
+  const [boardList, setBoardList] = useState<MemoStrtype[]>([]);
 
   async function load() {
     await getBoardList();
@@ -26,6 +26,11 @@ function Board() {
       // JSON 데이터 파싱 및 반환
       const data: any = await response.json();
       console.log(`data : `, data);
+      if (!data?.success) {
+        alert(` 서버 에러. ${data?.msg}`);
+        return;
+      }
+      setBoardList(data?.data || []);
     } catch (error: any) {
       alert(`에러. 데이터를 가져오는 중 오류 발생. ${error?.message}`);
     }
@@ -54,23 +59,13 @@ function Board() {
           <p>Not logged in</p>
         )}
       </div>
-      <div>
-        {/* 인자는 ( )로 감싸고, 리턴 부분도 ( )로 감싸세요 */}
-        {boardList?.map((item, index) => (
-          <div key={index}>
-            <div>{item}</div>
-          </div>
-        ))}
-      </div>
+
       <div>
         <label>검색:</label>
         <input
           value={myinput}
           onKeyDown={(e) => {
             if (e.code.toLowerCase().includes("enter")) {
-              let _temp = [...boardList, myinput];
-              console.log(_temp);
-              setBoardList(_temp);
             }
           }}
           onChange={(e) => {
@@ -78,7 +73,14 @@ function Board() {
           }}
         />
       </div>
-      <div>{/**  */}</div>
+      <div>
+        {/* 인자는 ( )로 감싸고, 리턴 부분도 ( )로 감싸세요 */}
+        {boardList?.map((item, index) => (
+          <div key={index}>
+            <div>{item?.title}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
