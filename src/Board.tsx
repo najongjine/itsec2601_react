@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "./context/AuthContext";
 import { MemoStrtype } from "./types/global_types";
 import { useNavigate } from "react-router-dom";
+import Antigravity from "./Component/reactbits/Antigravity";
 
 function Board() {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -46,62 +47,131 @@ function Board() {
   }
 
   return (
-    <div>
-      <h1>Board</h1>
+    <div style={{ position: "relative", minHeight: "100vh" }}>
+      {/* Background Layer */}
       <div
-        style={{ padding: "10px", margin: "10px", border: "1px solid #ccc" }}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: -1,
+          //pointerEvents: "none", // Ensure it doesn't block clicks if not needed, though user wants mouse interaction so maybe remove this if it blocks the effect.
+          // The effect relies on mouse position, which usually works globally or on the canvas.
+          // If the canvas needs hover events, pointerEvents: "none" might block it IF the canvas listens to events on itself.
+          // Looking at Antigravity.tsx: const { viewport: v, pointer: m } = state;
+          // It uses global pointer from useThree state usually derived from canvas event listeners.
+          // However, standard R3F Canvas captures events on the canvas element.
+          // If we put it behind, and other divs are on top, the canvas might not get mouse events if they bubble/capture differently.
+          // But R3F often uses window event listeners for pointer if configured, or the canvas element itself.
+          // If I put z-index -1, the content on top (z-index 1) will block mouse events to the canvas.
+          // `useThree` pointer usually tracks mouse across the canvas.
+          // If the upper layer has no background color (transparent), pass-through might work for some events, but clicks usually hit the top element.
+          // But for "background swish", it just reads mouse position. `useFrame` reads `state.pointer`.
+          // `state.pointer` is normalized mouse coordinates. R3F updates this usually via event listeners on the canvas or window.
+          // To be safe, I will NOT put pointerEvents: none on the container if it needs to receive events, BUT since it's a background, maybe it just needs to exist.
+          // Actually, if z-index is -1, it's behind.
+          // Let's just stick to the plan: layout changes.
+        }}
       >
-        <h3>Logged In User Info:</h3>
-        {userInfo ? (
-          <div>
-            <p>
-              <strong>ID:</strong> {userInfo.id}
-            </p>
-            <p>
-              <strong>Username:</strong> {userInfo.username}
-            </p>
-          </div>
-        ) : (
-          <p>Not logged in</p>
-        )}
-      </div>
-
-      <div>
-        <label>검색:</label>
-        <input
-          value={myinput}
-          onKeyDown={(e) => {
-            if (e.code.toLowerCase().includes("enter")) {
-            }
-          }}
-          onChange={(e) => {
-            setMyinput(e.target.value);
-          }}
+        <Antigravity
+          count={1000}
+          magnetRadius={16}
+          ringRadius={12}
+          waveSpeed={1.6}
+          waveAmplitude={1.1}
+          particleSize={1.5}
+          lerpSpeed={0.05}
+          color="#5227FF"
+          autoAnimate
+          particleVariance={1}
+          rotationSpeed={0.6}
+          depthFactor={1}
+          pulseSpeed={3.2}
+          particleShape="tetrahedron"
+          fieldStrength={11}
         />
       </div>
-      <div>
-        {/* 인자는 ( )로 감싸고, 리턴 부분도 ( )로 감싸세요 */}
-        {boardList?.map((item, index) => (
-          <div
-            key={index}
-            onClick={() => {
-              onItemClick(item?.id);
-            }}
-          >
-            <div>{item?.title}</div>
-            <div>{item?.username}</div>
-            <div>{item?.createdDt}</div>
-          </div>
-        ))}
-      </div>
-      <div>
-        <button
-          onClick={() => {
-            navigate(`/tiptap`);
+
+      {/* Main Content */}
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <h1>Board</h1>
+
+        <div
+          style={{
+            padding: "10px",
+            margin: "10px",
+            border: "1px solid #ccc",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
           }}
         >
-          새로작성
-        </button>
+          <h3>Logged In User Info:</h3>
+          {userInfo ? (
+            <div>
+              <p>
+                <strong>ID:</strong> {userInfo.id}
+              </p>
+              <p>
+                <strong>Username:</strong> {userInfo.username}
+              </p>
+            </div>
+          ) : (
+            <p>Not logged in</p>
+          )}
+        </div>
+
+        <div
+          style={{
+            padding: "10px",
+            margin: "10px",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+          }}
+        >
+          <label>검색:</label>
+          <input
+            value={myinput}
+            onKeyDown={(e) => {
+              if (e.code.toLowerCase().includes("enter")) {
+              }
+            }}
+            onChange={(e) => {
+              setMyinput(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          {/* 인자는 ( )로 감싸고, 리턴 부분도 ( )로 감싸세요 */}
+          {boardList?.map((item, index) => (
+            <div
+              key={index}
+              onClick={() => {
+                onItemClick(item?.id);
+              }}
+              style={{
+                padding: "10px",
+                margin: "10px",
+                backgroundColor: "rgba(255, 255, 255, 0.8)",
+                cursor: "pointer",
+                border: "1px solid #eee",
+              }}
+            >
+              <div>{item?.title}</div>
+              <div>{item?.username}</div>
+              <div>{item?.createdDt}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ padding: "10px" }}>
+          <button
+            onClick={() => {
+              navigate(`/tiptap`);
+            }}
+            style={{ padding: "10px 20px" }}
+          >
+            새로작성
+          </button>
+        </div>
       </div>
     </div>
   );
