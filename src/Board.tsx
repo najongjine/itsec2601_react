@@ -99,7 +99,9 @@ function Board() {
           onClick={() => {
             navigate(`/tiptap`);
           }}
-        ></button>
+        >
+          새로작성
+        </button>
       </div>
     </div>
   );
