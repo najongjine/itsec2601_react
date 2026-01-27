@@ -86,9 +86,9 @@ function Calc() {
   ];
 
   return (
-    <div className="calc-container">
-      <div className="calc-display">
-        <div className="input-line">
+    <div className="calc-wrapper">
+      <div className="calc-container">
+        <div className="calc-display">
           <textarea
             ref={inputRef as any}
             value={myinput}
@@ -97,28 +97,28 @@ function Calc() {
             className="calc-input"
             placeholder="0"
           />
+          <div className="result-preview">{result}</div>
         </div>
-        <div className="result-preview">{result}</div>
-      </div>
-      <div className="calc-keypad">
-        {buttons.map((btn, index) => {
-          let className = "calc-btn";
-          if (["/", "*", "-", "+", "=", "%"].includes(btn))
-            className += " operator";
-          if (btn === "C" || btn === "DEL") className += " clear";
-          if (btn === "0") className += " zero";
-          if (btn === "=") className += " equals";
+        <div className="calc-keypad">
+          {buttons.map((btn, index) => {
+            let className = "calc-btn";
+            if (["/", "*", "-", "+", "%"].includes(btn))
+              className += " operator";
+            if (btn === "C" || btn === "DEL") className += " clear";
+            if (btn === "0") className += " zero";
+            if (btn === "=") className += " equals";
 
-          return (
-            <button
-              key={index}
-              className={className}
-              onClick={() => handleButtonClick(btn)}
-            >
-              {btn}
-            </button>
-          );
-        })}
+            return (
+              <button
+                key={index}
+                className={className}
+                onClick={() => handleButtonClick(btn)}
+              >
+                {btn}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

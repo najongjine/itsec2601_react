@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
+import "./Login.css";
 
 function Login() {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -62,32 +63,36 @@ function Login() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="login-wrapper">
+      <div className="login-card">
+        <h1 className="login-title">로그인 하셈</h1>
 
-      <div>
-        <label>username:</label>
-        <input
-          value={username}
-          onKeyDown={handleKeyDown}
-          onChange={(e) => {
-            setUsername(e.target.value);
-          }}
-        />
-      </div>
-      <div>
-        <label>password:</label>
-        <input
-          type="password"
-          value={password}
-          onKeyDown={handleKeyDown}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-      </div>
-      <div>
-        <button onClick={handleRegister}>Login</button>
+        <div className="form-group">
+          <label className="form-label">Username</label>
+          <input
+            className="login-input"
+            value={username}
+            onKeyDown={handleKeyDown}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="username 입력"
+          />
+        </div>
+        <div className="form-group">
+          <label className="form-label">Password</label>
+          <input
+            type="password"
+            className="login-input"
+            value={password}
+            onKeyDown={handleKeyDown}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="비번 입력"
+          />
+        </div>
+        <div>
+          <button className="login-button" onClick={handleRegister}>
+            Login
+          </button>
+        </div>
       </div>
     </div>
   );
