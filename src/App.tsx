@@ -10,6 +10,7 @@ import BoardUpsert from "./BoardUpsert";
 import TipTapSample from "./TipTapSample";
 import MyEditor from "./MyEditor";
 import BoardDetail from "./BoardDetail";
+import SplashCursor from "./Component/reactbits/SplashCursor";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Header />
+          <SplashCursor />
           <Routes>
             <Route path="/" element={<Calc />} />
             <Route path="/board" element={<Board />} />

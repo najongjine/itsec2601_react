@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import GlitchText from "./reactbits/GlitchText";
 
 function Header() {
   const items = [
@@ -12,14 +13,24 @@ function Header() {
     <div
       style={{
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-between",
-        padding: "1rem 2rem",
+        gap: "1.5rem",
+        padding: "1.5rem 2rem",
         backgroundColor: "#fff",
         boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
       }}
     >
-      <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>헤더</div>
+      <div>
+        <GlitchText
+          speed={2}
+          enableShadows
+          enableOnHover={false}
+          className="custom-class"
+        >
+          광주컴퓨터 정보보안
+        </GlitchText>
+      </div>
       <nav style={{ display: "flex", gap: "1rem" }}>
         {items.map((item) => (
           <Link

@@ -26,6 +26,7 @@
     "highlight.js": "^11.11.1",
     "lowlight": "^3.3.0",
     "mathjs": "^15.1.0",
+    "matter-js": "^0.20.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.12.0",
