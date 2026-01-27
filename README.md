@@ -3,7 +3,10 @@ npm create vite@latest itsec2601_react -- --template react-ts
 npm install react-router-dom
 
 npm install dompurify
+
 npm install -D @types/dompurify
+
+npm install gsap
 
 # React + TypeScript + Vite
 

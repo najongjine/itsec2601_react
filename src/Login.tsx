@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import "./Login.css";
+import Ballpit from "./Component/reactbits/Ballpit";
 
 function Login() {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -66,6 +67,24 @@ function Login() {
     <div className="login-wrapper">
       <div className="login-card">
         <h1 className="login-title">로그인 하셈</h1>
+
+        <div
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            minHeight: "500px",
+            maxHeight: "500px",
+            width: "100%",
+          }}
+        >
+          <Ballpit
+            count={100}
+            gravity={0.01}
+            friction={0.9975}
+            wallBounce={0.95}
+            followCursor={false}
+          />
+        </div>
 
         <div className="form-group">
           <label className="form-label">Username</label>
