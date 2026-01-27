@@ -60,7 +60,7 @@ function Register() {
             value={username}
             onKeyDown={handleKeyDown}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Choose a username"
+            placeholder="username 입력"
           />
         </div>
         <div className="form-group">
@@ -71,12 +71,12 @@ function Register() {
             value={password}
             onKeyDown={handleKeyDown}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Choose a password"
+            placeholder="비번 입력"
           />
         </div>
         <div>
           <button className="login-button" onClick={handleRegister}>
-            Register
+            회원가입
           </button>
         </div>
       </div>
