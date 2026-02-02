@@ -8,6 +8,7 @@ function Header() {
     { label: "Register", to: "/register", color: "#f59e0b" },
     { label: "Login", to: "/login", color: "#ef4444" },
     { label: "Check Game", to: "/checkgame", color: "#8b5cf6" },
+    { label: "Maze", to: "/maze", color: "#ec4899" },
   ];
 
   return (

@@ -12,6 +12,7 @@ import MyEditor from "./MyEditor";
 import BoardDetail from "./BoardDetail";
 import SplashCursor from "./Component/reactbits/SplashCursor";
 import ChessPage from "./Component/Chess/ChessPage";
+import MazePage from "./Component/Maze/MazePage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/tiptap" element={<MyEditor />} />
             <Route path="/board_detail" element={<BoardDetail />} />
             <Route path="/checkgame" element={<ChessPage />} />
+            <Route path="/maze" element={<MazePage />} />
           </Routes>
           <Footer />
         </AuthProvider>
