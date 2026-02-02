@@ -1,3 +1,5 @@
+https://itsec2601-react.vercel.app/board
+
 npm create vite@latest itsec2601_react -- --template react-ts
 
 npm install react-router-dom
