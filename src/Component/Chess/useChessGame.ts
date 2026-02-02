@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { BoardState, PlayerColor, Position, Piece } from "./ChessTypes";
 import * as ChessLogic from "./ChessLogic";
+import * as ChessAI from "./ChessAI";
 
 export interface GameState {
   board: BoardState;
@@ -20,6 +21,27 @@ export function useChessGame() {
     "playing",
   );
   const [winner, setWinner] = useState<PlayerColor | null>(null);
+  const [isAIMode, setIsAIMode] = useState<boolean>(false);
+
+  // AI Turn Effect
+  useEffect(() => {
+    if (isAIMode && turn === "black" && status !== "checkmate") {
+      // Small delay for realism
+      const timer = setTimeout(() => {
+        const bestMove = ChessAI.getBestMove(board, "black", 3); // Depth 3
+        if (bestMove) {
+          const newBoard = board.map((row) => [...row]);
+          newBoard[bestMove.to.row][bestMove.to.col] =
+            newBoard[bestMove.from.row][bestMove.from.col];
+          newBoard[bestMove.from.row][bestMove.from.col] = null;
+
+          setBoard(newBoard);
+          setTurn("white");
+        }
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [board, turn, isAIMode, status]);
 
   useEffect(() => {
     // Check game status on turn change
@@ -91,8 +113,14 @@ export function useChessGame() {
     setStatus("playing");
     setWinner(null);
     setSelectedPos(null);
+    setSelectedPos(null);
     setValidMoves([]);
   }, []);
+
+  const toggleAIMode = useCallback(() => {
+    setIsAIMode((prev) => !prev);
+    resetGame();
+  }, [resetGame]);
 
   return {
     board,
@@ -101,7 +129,9 @@ export function useChessGame() {
     validMoves,
     status,
     winner,
+    isAIMode,
     onSquareClick,
     resetGame,
+    toggleAIMode,
   };
 }

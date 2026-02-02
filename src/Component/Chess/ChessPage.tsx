@@ -9,8 +9,10 @@ export default function ChessPage() {
     validMoves,
     status,
     winner,
+    isAIMode,
     onSquareClick,
     resetGame,
+    toggleAIMode,
   } = useChessGame();
 
   return (
@@ -23,6 +25,30 @@ export default function ChessPage() {
       }}
     >
       <h1>Check Game (Chess)</h1>
+
+      <div
+        style={{
+          marginBottom: "1rem",
+          display: "flex",
+          gap: "1rem",
+          alignItems: "center",
+        }}
+      >
+        <button
+          onClick={toggleAIMode}
+          style={{
+            padding: "0.5rem 1rem",
+            backgroundColor: isAIMode ? "#10b981" : "#6b7280",
+            color: "white",
+            border: "none",
+            borderRadius: "9999px",
+            cursor: "pointer",
+            fontWeight: "bold",
+          }}
+        >
+          {isAIMode ? "🤖 AI Enabled" : "👤 2 Player Mode"}
+        </button>
+      </div>
 
       <div style={{ marginBottom: "1rem", fontSize: "1.2rem" }}>
         Status: <strong>{status.toUpperCase()}</strong> | Turn:{" "}
@@ -85,8 +111,12 @@ export default function ChessPage() {
         <ul>
           <li>
             <strong>Logic Layer:</strong> Pure TypeScript functions in{" "}
-            <code>ChessLogic.ts</code> handle all rules (valid moves, check
-            detection, etc.). No React code here.
+            <code>ChessLogic.ts</code>.
+          </li>
+          <li>
+            <strong>AI Layer:</strong> <code>ChessAI.ts</code> contains the
+            Minimax algorithm with Alpha-Beta pruning to calculate the best
+            move.
           </li>
           <li>
             <strong>View Layer:</strong> React components in{" "}
