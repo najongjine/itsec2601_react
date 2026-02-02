@@ -11,6 +11,7 @@ import TipTapSample from "./TipTapSample";
 import MyEditor from "./MyEditor";
 import BoardDetail from "./BoardDetail";
 import SplashCursor from "./Component/reactbits/SplashCursor";
+import ChessPage from "./Component/Chess/ChessPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/board_upsert" element={<BoardUpsert />} />
             <Route path="/tiptap" element={<MyEditor />} />
             <Route path="/board_detail" element={<BoardDetail />} />
+            <Route path="/checkgame" element={<ChessPage />} />
           </Routes>
           <Footer />
         </AuthProvider>
