@@ -13,6 +13,7 @@ import BoardDetail from "./BoardDetail";
 import SplashCursor from "./Component/reactbits/SplashCursor";
 import ChessPage from "./Component/Chess/ChessPage";
 import MazePage from "./Component/Maze/MazePage";
+import CNN from "./CNN";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/board_detail" element={<BoardDetail />} />
             <Route path="/checkgame" element={<ChessPage />} />
             <Route path="/maze" element={<MazePage />} />
+            <Route path="/cnn" element={<CNN />} />
           </Routes>
           <Footer />
         </AuthProvider>
