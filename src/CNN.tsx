@@ -35,10 +35,10 @@ function CNN() {
     setLoading(true);
     setError(null);
     const formData = new FormData();
-    formData.append("", null);
+    formData.append("file", file);
 
     try {
-      const response = await fetch(`/${model}`, {
+      const response = await fetch(`${CNN_API_URL}/${model}`, {
         method: "POST",
         body: formData,
       });
