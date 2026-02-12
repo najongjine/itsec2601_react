@@ -11,7 +11,7 @@ function Header() {
     { label: "Maze", to: "/maze", color: "#ec4899" },
     {
       label: "CNN",
-      to: "/cnn",
+      to: "/cnn?model=classify_muffin_chihuahua",
       color: "#80dab4ff",
       children: [
         {
