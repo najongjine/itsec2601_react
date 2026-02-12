@@ -9,6 +9,7 @@ function Header() {
     { label: "Login", to: "/login", color: "#ef4444" },
     { label: "Check Game", to: "/checkgame", color: "#8b5cf6" },
     { label: "Maze", to: "/maze", color: "#ec4899" },
+    { label: "CNN", to: "/cnn", color: "#80dab4ff" },
   ];
 
   return (
