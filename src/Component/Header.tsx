@@ -32,6 +32,11 @@ function Header() {
         },
       ],
     },
+    {
+      label: "FaceRecog",
+      to: "/facerecog",
+      color: "#80dab4ff",
+    },
   ];
 
   return (
