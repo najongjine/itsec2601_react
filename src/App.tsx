@@ -14,6 +14,7 @@ import SplashCursor from "./Component/reactbits/SplashCursor";
 import ChessPage from "./Component/Chess/ChessPage";
 import MazePage from "./Component/Maze/MazePage";
 import CNN from "./CNN";
+import FaceRecog from "./FaceRecog";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/checkgame" element={<ChessPage />} />
             <Route path="/maze" element={<MazePage />} />
             <Route path="/cnn" element={<CNN />} />
+            <Route path="/facerecog" element={<FaceRecog />} />
           </Routes>
           <Footer />
         </AuthProvider>
