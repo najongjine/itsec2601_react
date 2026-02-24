@@ -48,6 +48,10 @@ function FaceRecog() {
   }
 
   function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
+    setResult({
+      label: "",
+      confidence: 0,
+    });
     const selectedFile = event.target.files?.[0];
     if (selectedFile) {
       setFile(selectedFile);
@@ -68,6 +72,11 @@ function FaceRecog() {
       )}
 
       <button onClick={handleUpload}>얼굴맞추기</button>
+
+      <div>
+        <p>{result?.label}</p>
+        <p>{result?.confidence}</p>
+      </div>
     </div>
   );
 }
