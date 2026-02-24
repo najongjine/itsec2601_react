@@ -13,7 +13,12 @@ function FaceRecog() {
     confidence: 0,
   });
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setResult({
+      label: "",
+      confidence: 0,
+    });
+  }, []);
 
   async function handleUpload(event: React.MouseEvent<HTMLButtonElement>) {
     if (!file) {
@@ -37,11 +42,12 @@ function FaceRecog() {
         alert(`AI 서버 에러 ${data?.message}`);
         return;
       }
-      console.log(data);
-      let _result = data?.data?.[0];
+
+      let _result = data?.results?.[0];
+      console.log(_result);
       setResult({
         label: _result?.label,
-        confidence: _result?.confidence,
+        confidence: _result?.score,
       });
     } catch (error: any) {
       alert(`Error: ${error?.message}`);
