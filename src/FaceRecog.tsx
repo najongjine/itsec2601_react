@@ -37,10 +37,11 @@ function FaceRecog() {
         alert(`AI 서버 에러 ${data?.message}`);
         return;
       }
-
+      console.log(data);
+      let _result = data?.data?.[0];
       setResult({
-        label: data?.data?.label,
-        confidence: data?.data?.confidence,
+        label: _result?.label,
+        confidence: _result?.confidence,
       });
     } catch (error: any) {
       alert(`Error: ${error?.message}`);
