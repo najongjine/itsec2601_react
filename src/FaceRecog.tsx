@@ -15,8 +15,6 @@ function FaceRecog() {
 
   function handleFileChange(event: ChangeEvent<HTMLInputElement>): void {}
 
-  function handlePredict(event: React.MouseEvent<HTMLButtonElement>): void {}
-
   return (
     <div>
       <h1>FaceRecog</h1>
@@ -24,16 +22,12 @@ function FaceRecog() {
       <input type="file" accept="image/*" onChange={handleFileChange} />
 
       {preview && (
-        <div className="preview-container">
-          <img src={preview} alt="Preview" className="preview-image" />
+        <div className="">
+          <img src={preview} alt="Preview" className="" />
         </div>
       )}
 
-      <button onClick={handleUpload} className="classify-button">
-        Classify Image
-      </button>
-
-      <button onClick={handlePredict}></button>
+      <button onClick={handleUpload}>얼굴맞추기</button>
     </div>
   );
 }
