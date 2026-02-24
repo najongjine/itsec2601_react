@@ -11,7 +11,13 @@ function FaceRecog() {
 
   useEffect(() => {}, []);
 
-  function handleUpload(event: React.MouseEvent<HTMLButtonElement>): void {}
+  function handleUpload(event: React.ChangeEvent<HTMLInputElement>) {
+    const selectedFile = event.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setPreview(URL.createObjectURL(selectedFile));
+    }
+  }
 
   function handleFileChange(event: ChangeEvent<HTMLInputElement>): void {}
 
