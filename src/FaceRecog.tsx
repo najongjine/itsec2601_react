@@ -11,7 +11,26 @@ function FaceRecog() {
 
   useEffect(() => {}, []);
 
-  function handleUpload(event: React.MouseEvent<HTMLButtonElement>) {}
+  async function handleUpload(event: React.MouseEvent<HTMLButtonElement>) {
+    if (!file) {
+      alert("이미지를 선택해주세요.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const response = await fetch(FaceRecog_API_URL, {
+      method: "POST",
+      body: formData,
+    });
+    if (!response.ok) {
+      alert(`Network response was not ok ${response.status}`);
+      return;
+    }
+    const data = await response.json();
+    console.log(data);
+  }
 
   function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
     const selectedFile = event.target.files?.[0];
