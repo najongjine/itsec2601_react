@@ -8,6 +8,10 @@ function FaceRecog() {
   const [searchParams] = useSearchParams();
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
+  const [result, setResult] = useState<{ label: string; confidence: number }>({
+    label: "",
+    confidence: 0,
+  });
 
   useEffect(() => {}, []);
 
@@ -29,7 +33,15 @@ function FaceRecog() {
         return;
       }
       const data = await response.json();
-      console.log(data);
+      if (!data?.success) {
+        alert(`AI 서버 에러 ${data?.message}`);
+        return;
+      }
+
+      setResult({
+        label: data?.data?.label,
+        confidence: data?.data?.confidence,
+      });
     } catch (error: any) {
       alert(`Error: ${error?.message}`);
     }
