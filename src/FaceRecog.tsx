@@ -19,17 +19,20 @@ function FaceRecog() {
 
     const formData = new FormData();
     formData.append("file", file);
-
-    const response = await fetch(FaceRecog_API_URL, {
-      method: "POST",
-      body: formData,
-    });
-    if (!response.ok) {
-      alert(`Network response was not ok ${response.status}`);
-      return;
+    try {
+      const response = await fetch(FaceRecog_API_URL, {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) {
+        alert(`Network response was not ok ${response.status}`);
+        return;
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error: any) {
+      alert(`Error: ${error?.message}`);
     }
-    const data = await response.json();
-    console.log(data);
   }
 
   function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
