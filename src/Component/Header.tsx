@@ -37,6 +37,17 @@ function Header() {
       to: "/facerecog",
       color: "#80dab4ff",
     },
+    {
+      label: "이미지임베딩",
+      to: "/imgembed",
+      color: "#80dab4ff",
+      children: [
+        {
+          label: "이미지검색",
+          to: "/imgembed?mode=search_image",
+        },
+      ],
+    },
   ];
 
   return (

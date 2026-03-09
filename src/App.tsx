@@ -15,6 +15,7 @@ import ChessPage from "./Component/Chess/ChessPage";
 import MazePage from "./Component/Maze/MazePage";
 import CNN from "./CNN";
 import FaceRecog from "./FaceRecog";
+import ImgEmbed from "./ImgEmbed";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/maze" element={<MazePage />} />
             <Route path="/cnn" element={<CNN />} />
             <Route path="/facerecog" element={<FaceRecog />} />
+            <Route path="/imgembed" element={<ImgEmbed />} />
           </Routes>
           <Footer />
         </AuthProvider>

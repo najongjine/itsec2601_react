@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useAuth } from "./context/AuthContext";
 import "./CNN.css";
-import Ballpit from "./Component/reactbits/Ballpit";
 
 function CNN() {
   const CNN_API_URL = import.meta.env.VITE_CNN_API_URL;
