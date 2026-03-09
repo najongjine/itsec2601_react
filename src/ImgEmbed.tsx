@@ -38,11 +38,120 @@ function ImgEmbed() {
     setError(null);
   }, [mode]);
 
+  const handleSearch = async () => {
+    if (!file) {
+      setError("이미지를 선택해주세요.");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+    setResult(null);
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/embedding/${mode}`, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`서버 오류: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (data?.success) {
+        setResult(data.data);
+      } else {
+        setError(data?.msg || "검색에 실패했습니다.");
+      }
+    } catch (err: any) {
+      console.error("Error searching image:", err);
+      setError(err?.message || "이미지 검색 중 오류가 발생했습니다.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      const objectUrl = URL.createObjectURL(selectedFile);
+      setPreview(objectUrl);
+      setResult(null);
+      setError(null);
+    }
+  };
+
   return (
-    <div>
+    <div className="cnn-container">
       {mode === "search_image" && (
-        <div>
+        <div className="upload-section">
           <h1>이미지 검색</h1>
+          <p>비슷한 이미지를 찾기 위해 이미지를 업로드하세요.</p>
+
+          <input
+            type="file"
+            accept="image/*"
+            id="file-upload"
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
+          <label
+            htmlFor="file-upload"
+            className="classify-button"
+            style={{ textAlign: "center", display: "inline-block" }}
+          >
+            이미지 선택
+          </label>
+
+          {preview && (
+            <div className="preview-container">
+              <h3>미리보기</h3>
+              <img
+                src={preview}
+                alt="Selected preview"
+                className="preview-image"
+              />
+              <div style={{ marginTop: "1rem" }}>
+                <button
+                  className="classify-button"
+                  onClick={handleSearch}
+                  disabled={loading}
+                >
+                  {loading ? "검색 중..." : "이미지 검색"}
+                </button>
+              </div>
+            </div>
+          )}
+
+          {error && <div className="error-message">{error}</div>}
+
+          {result && (
+            <div className="results-container">
+              <h2>검색 결과</h2>
+              <div className="results-grid">
+                {result.map((item: any) => (
+                  <div key={item.id} className="result-card">
+                    <img
+                      src={item.url}
+                      alt={item.title}
+                      className="result-image"
+                    />
+                    <div className="result-info">
+                      <p className="result-title">{item.title}</p>
+                      <p className="result-score">
+                        유사도: {(item.score * 100).toFixed(2)}%
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
