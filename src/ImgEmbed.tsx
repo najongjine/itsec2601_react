@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import "./ImgEmbed.css";
 
 /**
+ * /api/embedding/search_image
  * 서버에서 주는 데이터 형식 :
 {
     "success": true,
