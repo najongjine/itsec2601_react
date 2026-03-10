@@ -46,6 +46,10 @@ function Header() {
           label: "이미지검색",
           to: "/imgembed?mode=search_image",
         },
+        {
+          label: "이미지 DB에 추가",
+          to: "/imgembed?mode=insert_image_embedding",
+        },
       ],
     },
   ];
