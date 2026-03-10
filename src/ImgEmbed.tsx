@@ -17,6 +17,30 @@ import "./ImgEmbed.css";
         },
     ]
 }
+
+
+이미지 검색을 할려면 DB에 이미지를 넣어줘야해요
+- React 에서 새로운 이미지 DB에 넣기
+
+
+/api/embedding/insert_image_embedding
+서버에서 주는 데이터 형식 :
+{
+    "success": true,
+    "data": {
+        "results": [
+            {
+                "id": "12",
+                "title": "KAtla.jpg",
+                "url": "https://i.ibb.co/wrM0mNz3/KAtla.jpg",
+                "mimetype": "image/jpeg",
+                "img_embedding": "[0.011344105,-0.05240487,-0.1615729, ... ]",
+                "created_at": "2026-03-10T05:02:55.661Z"
+            }
+        ],
+"msg":"에러 원인. 정상이면 빈 문자열."
+    }
+}
  */
 
 function ImgEmbed() {
